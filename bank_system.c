@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include <windows.h>
 #include <stdlib.h>
 
@@ -54,12 +55,17 @@ void menu(void){
 }
 
 void new_account(){
+    time_t t = time(NULL);
+    struct tm *current_time;
+    current_time = localtime(&t);
+
+
     FILE *ptr;
     ptr = fopen("records.dat", "a+");
 
     system("cls");
     printf("\n\n\t\xB2\xB2\xB2 ADD RECORD \xB2\xB2\xB2\xB2");
-    printf("\n\n\nEnter today's date ()mm/dd/yyyy: ");
+    printf("\n\n\n Enter today's date ()mm/dd/yyyy: ");
     scanf("%d/%d/%d", &add.deposit.month, &add.deposit.day, &add.deposit.year);
     printf("\n Enter account number: ");
     scanf("%d", &add.acc_no);
@@ -78,7 +84,7 @@ void new_account(){
     printf("\n Type of account: \n\t#Savings\n\t#Current\n\t#Fixed\n\nEnter your choice: ");
     scanf("%s", &add.acc_type);
 
-    fprintf(ptr, "%s %d %d %s %d %lf %s",
+    fprintf(ptr, "\n%s %d %d %s %d %lf %s",
             add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no,
             add.acc_type);
 
@@ -87,6 +93,12 @@ void new_account(){
 }
 
 int main(){
-    menu();
+    //menu();
+    time_t t = time(NULL);
+    struct tm *current_time;
+    current_time = localtime(&t);
+    char s[64];
+    strftime(s, sizeof(s), "%c", current_time);
+    printf("%s", s);
     return 0;
 }
