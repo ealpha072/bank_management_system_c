@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <stdlib.h>
 
+int main_exit;
 struct date{
     int month, day, year;
 };
@@ -11,10 +12,9 @@ struct date{
 struct{
     char name[60];
     int acc_no, age;
-    char address[60];
-    char nationality[15];
+    char email_addess[60];
     int id_no;
-    double phone_no;
+    long long phone_no;
     char acc_type[10];
     float amount;
     struct date dob;
@@ -54,18 +54,21 @@ void menu(void){
         default: printf("Invalid choice. Please enter a number from 1 to 7.\n");
             break;
     }
-
 }
 
+void close_app(){
+    printf("\n\nThank you for choosing this system");
+}
 
 void new_account(){
     time_t t = time(NULL);
     struct tm *current_time;
     current_time = localtime(&t);
-    char s[64];
-    strftime(s, sizeof(s), "%c", current_time);
+    char s[11];
+    strftime(s, sizeof(s), "%m/%d/%Y", current_time);
 
     FILE *ptr;
+
 
     if(access("data_records.csv", F_OK) == 0){
         //OPEN IN APPEND MODE
@@ -81,7 +84,7 @@ void new_account(){
             perror("Unable to open file");
             exit(0);
         }
-        fprintf(ptr, "Date,name,acc_no,age,address,id_no,phone_no,acc_type");
+        fprintf(ptr, "Date,name,acc_no,age,email_address,id_no,phone_no,acc_type");
         //s, add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no, add.acc_type
     }
 
@@ -92,26 +95,38 @@ void new_account(){
     printf("\n Enter account number: ");
     scanf("%d", &add.acc_no);
     printf("\n Enter your name: ");
-    scanf("%s", &add.name);
+    scanf("%s", add.name);
     printf("\n Enter your date of birth(mm/dd/yyy): ");
     scanf("%d/%d/%d", &add.dob.month, &add.dob.day, &add.dob.year);
     printf("\n Enter the age: ");
     scanf("%d", &add.age);
-    printf("\n Enter your address: ");
-    scanf("%s", &add.address);
+    printf("\n Enter your email address: ");
+    scanf("%s", add.email_addess);
     printf("\n Enter id number: ");
     scanf("%d", &add.id_no);
     printf("\n Enter phone number: ");
     scanf("%lf", &add.phone_no);
     printf("\n Type of account: \n\t#Savings\n\t#Current\n\t#Fixed\n\nEnter your choice: ");
-    scanf("%s", &add.acc_type);
+    scanf("%s", add.acc_type);
 
     fprintf(ptr, "\n%s %s %d %d %s %d %lf %s",
-            s, add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no,
+            s, add.name, add.acc_no, add.age, add.email_addess, add.id_no, add.phone_no,
             add.acc_type);
 
     fclose(ptr);
-    printf("\nAccount created Successfully");
+    printf("\nAccount created Successfully !!!");
+
+    printf("\nEnter 1 to go to main menu or 0 to exit: ");
+    scanf("%d", &main_exit);
+
+    if(main_exit == 1){
+        menu();
+    }else if(main_exit == 0){
+        close_app();
+    }
+    else{
+        printf("\nInvalid option");
+    }
 }
 
 int main(){
