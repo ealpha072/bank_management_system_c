@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <time.h>
 #include <windows.h>
 #include <stdlib.h>
@@ -41,7 +42,7 @@ void menu(void){
     printf("\n\t5.View customer list");
     printf("\n\t6.Update infomation of existing account");
     printf("\n\t7.Exit\n");
-    printf("\n\n\n\n\t.Enter your choice here: ");
+    printf("\n\n\tEnter your choice here: ");
 
     scanf("%d", &choice);
     printf("\n\tUser chosen option: %d\n", choice);
@@ -49,24 +50,45 @@ void menu(void){
     system("cls");
     switch(choice){
         case 1: new_account();
-        break;
+            break;
+        default: printf("Invalid choice. Please enter a number from 1 to 7.\n");
+            break;
     }
 
 }
+
 
 void new_account(){
     time_t t = time(NULL);
     struct tm *current_time;
     current_time = localtime(&t);
-
+    char s[64];
+    strftime(s, sizeof(s), "%c", current_time);
 
     FILE *ptr;
-    ptr = fopen("records.dat", "a+");
+
+    if(access("data_records.csv", F_OK) == 0){
+        //OPEN IN APPEND MODE
+        ptr = fopen("data_records.csv", "a");
+        if(ptr == NULL){
+            perror("Unable to open file");
+            exit(0);
+        }
+    }else{
+        //OPEN IT AND WRITE HEADERS
+        ptr = fopen("data_records.csv", "w");
+        if(ptr == NULL){
+            perror("Unable to open file");
+            exit(0);
+        }
+        fprintf(ptr, "Date,name,acc_no,age,address,id_no,phone_no,acc_type");
+        //s, add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no, add.acc_type
+    }
 
     system("cls");
     printf("\n\n\t\xB2\xB2\xB2 ADD RECORD \xB2\xB2\xB2\xB2");
-    printf("\n\n\n Enter today's date ()mm/dd/yyyy: ");
-    scanf("%d/%d/%d", &add.deposit.month, &add.deposit.day, &add.deposit.year);
+    //printf("\n\n\n Enter today's date ()mm/dd/yyyy: ");
+    //scanf("%d/%d/%d", &add.deposit.month, &add.deposit.day, &add.deposit.year);
     printf("\n Enter account number: ");
     scanf("%d", &add.acc_no);
     printf("\n Enter your name: ");
@@ -84,8 +106,8 @@ void new_account(){
     printf("\n Type of account: \n\t#Savings\n\t#Current\n\t#Fixed\n\nEnter your choice: ");
     scanf("%s", &add.acc_type);
 
-    fprintf(ptr, "\n%s %d %d %s %d %lf %s",
-            add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no,
+    fprintf(ptr, "\n%s %s %d %d %s %d %lf %s",
+            s, add.name, add.acc_no, add.age, add.address, add.id_no, add.phone_no,
             add.acc_type);
 
     fclose(ptr);
@@ -93,12 +115,6 @@ void new_account(){
 }
 
 int main(){
-    //menu();
-    time_t t = time(NULL);
-    struct tm *current_time;
-    current_time = localtime(&t);
-    char s[64];
-    strftime(s, sizeof(s), "%c", current_time);
-    printf("%s", s);
+    menu();
     return 0;
 }
