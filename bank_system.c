@@ -51,13 +51,15 @@ void menu(void){
     switch(choice){
         case 1: new_account();
             break;
+        case 7:close_app();
+            break;
         default: printf("Invalid choice. Please enter a number from 1 to 7.\n");
             break;
     }
 }
 
 void close_app(){
-    printf("\n\nThank you for choosing this system");
+    printf("\n\nThank you for choosing Alpha's Bank system");
 }
 
 void new_account(){
