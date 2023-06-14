@@ -30,9 +30,15 @@ struct hotels m[5];
 struct userDetais s[100];
 
 //inpput new account
-void signUp()
+void signUp();
 
 int choice;
+int temp_age;
+char temp_name[100];
+char temp_password_one[100];
+char temp_password_two[100];
+char temp_email[100];
+char temp_mobie[100];
 
 int main(){
     while(1){
@@ -64,4 +70,25 @@ int main(){
             }
         }
     }
+}
+
+void signUp(){
+    printf("Welcome to the signup page");
+    printf("Enter your name: ");
+    scanf("%s", temp_name);
+
+    printf("Enter your age: ");
+    scanf("%s", &temp_age);
+
+    printf("Enter your email: ");
+    scanf("%s", temp_email);
+
+    printf("Enter your password: ");
+    scanf("%s", temp_password_one);
+
+    printf("Confirm your password: ");
+    scanf("%s", temp_password_two);
+
+    printf("Enter mobile number: ");
+    scanf("%s", temp_mobie);
 }
