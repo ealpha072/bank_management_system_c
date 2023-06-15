@@ -33,6 +33,7 @@ struct userDetais s[100];
 void signUp();
 
 int choice;
+int flag;
 int temp_age;
 char temp_name[100];
 char temp_password_one[100];
@@ -91,4 +92,20 @@ void signUp(){
 
     printf("Enter mobile number: ");
     scanf("%s", temp_mobie);
+}
+//validate the user
+int validate(){
+    int i, j;
+    //validate name
+
+    for (i = 0; temp_name[i] != '\0'; i++){
+        if (!(temp_name[i] >= 'a' && temp_name[i] <= 'z') ||
+            (temp_name[i] >= 'A' && temp_name[i] <= 'Z')
+        ){
+            printf("Please enter a valid name: ");
+            flag = 0;
+            break;
+        }
+    }
+
 }
