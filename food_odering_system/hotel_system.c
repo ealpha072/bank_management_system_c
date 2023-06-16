@@ -96,8 +96,8 @@ void signUp(){
 //validate the user
 int validate(){
     int i, j;
-    //validate name
 
+    //validate name
     for (i = 0; temp_name[i] != '\0'; i++){
         if (!(temp_name[i] >= 'a' && temp_name[i] <= 'z') ||
             (temp_name[i] >= 'A' && temp_name[i] <= 'Z')
@@ -108,4 +108,14 @@ int validate(){
         }
     }
 
+}
+
+void login(){
+    printf("Welcome to the login page");
+
+    printf("Enter your email address: ");
+    scanf("%s", temp_email);
+    
+    printf("Enter your password: ");
+    scanf("%s", temp_password_one);
 }
