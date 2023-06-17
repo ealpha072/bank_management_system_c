@@ -2,6 +2,7 @@
 // Ordering System
 // Initialization
 #include <stdio.h>
+#include <windows.h>
 
 // Structure to store the user details
 // i.e., Signup details
@@ -30,7 +31,7 @@ struct hotels m[5];
 struct userDetais s[100];
 
 //inpput new account
-void signUp();
+//void signUp();
 
 int choice;
 int flag;
@@ -42,35 +43,18 @@ char temp_email[100];
 char temp_mobie[100];
 
 int main(){
-    while(1){
-        printf("\n\nWelcome to Alpha fast foods\n");
+    system("cls");
+    system("color 5");
+    printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
+    printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the main menu \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
-        printf("\n\n\nMENU");
-        printf("1) SIGNUP");
-        printf("2)LOGIN");
-        printf("3) EXIT");
-        printf("Enter your choice here: ");
+    printf("\n\t1). Signup (create account)");
+    printf("\n\t2). Login");
+    printf("\n\t3). Exit\n");
+    printf("\n\n\tEnter your choice here: ");
 
-        switch (choice){
-            case 1:{
-                signup();
-                break;
-            }
-
-            case 2:{
-                login();
-                break;
-            }
-
-            case 3: {
-                exit(1);
-            }
-
-            default: {
-                printf("\nPlease Enter the valid choice\n");
-            }
-        }
-    }
+    scanf("%d", &choice);
+    printf("\n\n\tYou have chosen option: %d\n", choice);
 }
 
 void signUp(){
@@ -107,7 +91,6 @@ int validate(){
             break;
         }
     }
-
 }
 
 void login(){
@@ -115,7 +98,7 @@ void login(){
 
     printf("Enter your email address: ");
     scanf("%s", temp_email);
-    
+
     printf("Enter your password: ");
     scanf("%s", temp_password_one);
 }
