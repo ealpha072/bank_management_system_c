@@ -55,26 +55,35 @@ int main(){
 
     scanf("%d", &choice);
     printf("\n\n\tYou have chosen option: %d\n", choice);
+    system("cls");
+
+    switch(choice){
+        case 1: signUp();
+            break;
+        default: printf("Invalid choice. Please enter valid choice");
+    }
 }
 
 void signUp(){
-    printf("Welcome to the signup page");
-    printf("Enter your name: ");
+    printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
+    printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the signup page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
+
+    printf("\n\tEnter your name: ");
     scanf("%s", temp_name);
 
-    printf("Enter your age: ");
+    printf("\n\tEnter your age: ");
     scanf("%s", &temp_age);
 
-    printf("Enter your email: ");
+    printf("\n\tEnter your email: ");
     scanf("%s", temp_email);
 
-    printf("Enter your password: ");
+    printf("\n\tEnter your password: ");
     scanf("%s", temp_password_one);
 
-    printf("Confirm your password: ");
+    printf("\n\tConfirm your password: ");
     scanf("%s", temp_password_two);
 
-    printf("Enter mobile number: ");
+    printf("\n\tEnter mobile number: ");
     scanf("%s", temp_mobie);
 }
 //validate the user
