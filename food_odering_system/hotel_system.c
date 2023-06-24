@@ -32,8 +32,6 @@ struct userDetais s[100];
 
 //inpput new account
 //void signUp();
-
-int choice;
 int flag;
 int temp_age;
 char temp_name[100];
@@ -43,6 +41,8 @@ char temp_email[100];
 char temp_mobie[100];
 
 int main(){
+    int choice;
+
     system("cls");
     system("color 5");
     printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
@@ -60,6 +60,8 @@ int main(){
     switch(choice){
         case 1: signUp();
             break;
+        case 2:login();
+            break;
         default: printf("Invalid choice. Please enter valid choice");
     }
 }
@@ -72,7 +74,7 @@ void signUp(){
     scanf("%s", temp_name);
 
     printf("\n\tEnter your age: ");
-    scanf("%s", &temp_age);
+    scanf("%s", temp_age);
 
     printf("\n\tEnter your email: ");
     scanf("%s", temp_email);
@@ -103,11 +105,12 @@ int validate(){
 }
 
 void login(){
-    printf("Welcome to the login page");
+    printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
+    printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
-    printf("Enter your email address: ");
+    printf("\n\tEnter your email address: ");
     scanf("%s", temp_email);
 
-    printf("Enter your password: ");
+    printf("\n\tEnter your password: ");
     scanf("%s", temp_password_one);
 }
