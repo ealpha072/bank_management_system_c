@@ -3,6 +3,7 @@
 // Initialization
 #include <stdio.h>
 #include <windows.h>
+#include <time.h>
 
 // Structure to store the user details
 // i.e., Signup details
@@ -67,6 +68,32 @@ int main(){
 }
 
 void signUp(){
+    time_t t = time(NULL);
+    struct tm *current_time;
+    current_time = localtime(&t);
+    char s[11];
+    strftime(s, sizeof(s), "%m%d%y", current_time);
+
+    FILE *ptr;
+
+    if(access("user_records.csv", S_OK) == 0){
+        //OPEN FILE IN APPEND MODE
+        ptr = fopen("user_records.csv", "a");
+        if(ptr == NULL){
+            perror("Unable to open file user_records.csv");
+            exit(0);
+        }
+    }else{
+        //open and write headers
+        ptr = fopen("user_records.csv", "w");
+
+        if(ptr == NULL){
+            perror("Unable to open file user_records.csv");
+            exit(0);
+        }
+        fprintf(ptr, "Date,name,age,email,password,mobile");
+    }
+
     printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the signup page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
@@ -74,7 +101,7 @@ void signUp(){
     scanf("%s", temp_name);
 
     printf("\n\tEnter your age: ");
-    scanf("%s", temp_age);
+    scanf("%s", &temp_age);
 
     printf("\n\tEnter your email: ");
     scanf("%s", temp_email);
