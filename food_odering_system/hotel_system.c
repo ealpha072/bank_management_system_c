@@ -14,7 +14,7 @@ struct  userDetais {
     char password[100];
     char email[100];
     char mobile[10];
-};
+} add, check;
 
 // Structure to store the hotels
 // and their food details
@@ -27,19 +27,9 @@ struct hotels{
     int first, second, third, fourth;
 };
 
-// Initialize the hotels and details
-struct hotels m[5];
-struct userDetais s[100];
-
 //inpput new account
 //void signUp();
 int flag;
-int temp_age;
-char temp_name[100];
-char temp_password_one[100];
-char temp_password_two[100];
-char temp_email[100];
-char temp_mobie[100];
 
 int main(){
     int choice;
@@ -68,6 +58,9 @@ int main(){
 }
 
 void signUp(){
+    int success = 0;
+    char temp_password[100];
+    //time
     time_t t = time(NULL);
     struct tm *current_time;
     current_time = localtime(&t);
@@ -98,39 +91,29 @@ void signUp(){
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the signup page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
     printf("\n\tEnter your name: ");
-    scanf("%s", temp_name);
+    scanf("%s", add.username);
 
     printf("\n\tEnter your age: ");
-    scanf("%s", &temp_age);
+    scanf("%s", &add.age);
 
     printf("\n\tEnter your email: ");
-    scanf("%s", temp_email);
+    scanf("%s", add.email);
 
     printf("\n\tEnter your password: ");
-    scanf("%s", temp_password_one);
+    scanf("%s", add.password);
 
     printf("\n\tConfirm your password: ");
-    scanf("%s", temp_password_two);
+    scanf("%s", temp_password);
 
     printf("\n\tEnter mobile number: ");
-    scanf("%s", temp_mobie);
-}
-//validate the user
-int validate(){
-    int i, j;
+    scanf("%s", add.mobile);
 
-    //validate name
-    for (i = 0; temp_name[i] != '\0'; i++){
-        if (!(temp_name[i] >= 'a' && temp_name[i] <= 'z') ||
-            (temp_name[i] >= 'A' && temp_name[i] <= 'Z')
-        ){
-            printf("Please enter a valid name: ");
-            flag = 0;
-            break;
-        }
-    }
+    //write to file
+    //fprintf(ptr, "Date,name,age,email,password,mobile");
+    fprintf(ptr, "\n%s %s %d %s %s %s", s, add.username, add.age, add.email, add.password);
 }
 
+}
 void login(){
     printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
