@@ -58,6 +58,7 @@ int main(){
 }
 
 void signUp(){
+    int validates = 0;
     int success = 0;
     char temp_password[100];
     //time
@@ -113,14 +114,22 @@ void signUp(){
     fprintf(ptr, "\n%s %s %d %s %s %s", s, add.username, add.age, add.email, add.password);
 }
 
+int validatePassword(const char *str_one, const char *str_two ){
+    int password_flag = 0;
+    if (strcmp(str_one, str_two) == 0){
+        return 1;
+    }else{
+        return 0;
+    }
 }
+
 void login(){
     printf("\n\n\t\tWELCOME TO ALPHA FAST FOODS");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
     printf("\n\tEnter your email address: ");
-    scanf("%s", temp_email);
+    scanf("%s", add.email);
 
     printf("\n\tEnter your password: ");
-    scanf("%s", temp_password_one);
+    scanf("%s", add.password);
 }
