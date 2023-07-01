@@ -7,7 +7,7 @@
 
 // Structure to store the user details
 // i.e., Signup details
-
+int main_exit;
 struct  userDetais {
     char username[100];
     int age;
@@ -112,6 +112,19 @@ void signUp(){
     //write to file
     //fprintf(ptr, "Date,name,age,email,password,mobile");
     fprintf(ptr, "\n%s %s %d %s %s %s", s, add.username, add.age, add.email, add.password);
+    fclose(ptr);
+    printf("\nAccount created successfully");
+    printf("\n Enter 1 to go to main menu or 0 to exit");
+    scanf("%d", &main_exit);
+
+    if(main_exit == 1){
+        main();
+    }else if(main_exit == 0){
+        close_app();
+    }else{
+        printf("\n Invalid choice");
+    }
+
 }
 
 int validatePassword(const char *str_one, const char *str_two ){
@@ -132,4 +145,8 @@ void login(){
 
     printf("\n\tEnter your password: ");
     scanf("%s", add.password);
+}
+
+void close_app(){
+    printf("\n Thank you for choosing us");
 }
