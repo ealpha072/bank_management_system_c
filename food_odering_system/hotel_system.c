@@ -13,7 +13,7 @@ struct  userDetais {
     int age;
     char password[100];
     char email[100];
-    char mobile[10];
+    long long mobile;
 } add, check;
 
 // Structure to store the hotels
@@ -95,7 +95,7 @@ void signUp(){
     scanf("%s", add.username);
 
     printf("\n\tEnter your age: ");
-    scanf("%s", &add.age);
+    scanf("%d", &add.age);
 
     printf("\n\tEnter your email: ");
     scanf("%s", add.email);
@@ -103,18 +103,15 @@ void signUp(){
     printf("\n\tEnter your password: ");
     scanf("%s", add.password);
 
-    printf("\n\tConfirm your password: ");
-    scanf("%s", temp_password);
-
     printf("\n\tEnter mobile number: ");
-    scanf("%s", add.mobile);
+    scanf("%lf", &add.mobile);
 
     //write to file
     //fprintf(ptr, "Date,name,age,email,password,mobile");
-    fprintf(ptr, "\n%s %s %d %s %s %s", s, add.username, add.age, add.email, add.password);
+    fprintf(ptr, "\n%s %s %d %s %s %s %lf", s, add.username, add.age, add.email, add.password, add.mobile);
     fclose(ptr);
-    printf("\nAccount created successfully");
-    printf("\n Enter 1 to go to main menu or 0 to exit");
+    printf("\n Account created successfully...");
+    printf("\n\n Enter 1 to go to main menu or 0 to exit: ");
     scanf("%d", &main_exit);
 
     if(main_exit == 1){
