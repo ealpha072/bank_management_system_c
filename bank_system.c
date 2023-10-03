@@ -8,7 +8,7 @@ int main_exit;
 void menu(void){
     int user_choice;
     system("cls");
-    system("color 6");
+    system("color 9");
     printf("\n\n\t\tCUSTOMER ACCOUNT BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the main menu \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
     printf("\n\t1.Create new account");
@@ -22,16 +22,32 @@ void menu(void){
     system("cls");
 
     switch(user_choice){
+        case 2:
+            login();
+            break;
         case 4:
             close_app();
             break;
     }
 }
 
-int close_app(){
-    printf("\n\n\t\tThank you for choosing our bank\n\n");
+void close_app(){
+    system("cls");
+    printf("\n\n\t\tThank you for choosing our bank!!! \n\n");
 }
 
+void login(){
+    char username[20];
+    system("cls");
+    printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
+    printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
+    printf("\n\tEnter your username: ");
+    scanf("%s", &username);
+
+    printf("\n\tYour username is: %s\n", username);
+    //printf("\n\tEnter your password: ");
+    //system("cls");
+}
 
 int main(){
     menu();
