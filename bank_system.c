@@ -4,6 +4,15 @@
 #include <stdlib.h>
 
 int main_exit;
+struct bank_user{
+    char email[100];
+    char first_name[100];
+    char last_name[100];
+    double phone_number;
+    char acc_type[10];
+    char dob[12];
+    char id_number[10];
+}add;
 
 void menu(void){
     int user_choice;
@@ -57,9 +66,41 @@ void login(){
 }
 
 void create_new_account(){
+    const char *filename = "user_db.dat";
+    FILE *file = fopen(filename, "a+");
+
+    if(file == NULL){
+        //file doesnt exist so create and open in append
+        file = fopen(filename, "a+");
+        if (file ==NULL){
+            perror("Unable to create or open file ");
+            return 1;
+        }
+
+        printf("File sucesfully created and opened in append extended mode");
+    }else{
+        printf("File exists and has been opened in append mode");
+    }
+
+    //char sign_up_errors[];
     system("cls");
     printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the new user page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
+
+    printf("\n\t1. Enter your first name: ");
+    scanf("%s", add.first_name);
+    printf("\n\t2. Enter your last name: ");
+    scanf("%s", add.last_name);
+    printf("\n\t1. Enter your email address: ");
+    scanf("%s", add.email);
+    printf("\n\t3. Enter your phone number: ");
+    scanf("%lf", &add.phone_number);
+    printf("\n\t4. Enter your date of birth (mm/dd/yyyy): ");
+    scanf("%s", add.last_name);
+    printf("\n\t5. Enter your id number: ");
+    scanf("%d", &add.id_number);
+
+    system("cls");
 }
 
 int main(){
