@@ -76,7 +76,6 @@ void create_new_account(){
             perror("Unable to create or open file ");
             return 1;
         }
-
         printf("File sucesfully created and opened in append extended mode");
     }else{
         printf("File exists and has been opened in append mode");
