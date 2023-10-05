@@ -9,7 +9,6 @@ struct bank_user{
     char first_name[100];
     char last_name[100];
     double phone_number;
-    char acc_type[10];
     char dob[12];
     char id_number[10];
 }add;
@@ -66,13 +65,16 @@ void login(){
 }
 
 void create_new_account(){
-    const char *filename = "user_db.dat";
+    const char *filename = "user_db.csv";
     FILE *file = fopen(filename, "a+");
+    fprintf(file, "%s, %s, %s, %s, %s, %s\n", "First_name", "last_name", "email", "phone_number", "date_of_birth", "id_number");
 
     if(file == NULL){
         //file doesnt exist so create and open in append
         file = fopen(filename, "a+");
-        if (file ==NULL){
+        fprintf(file, "%s, %s, %s, %s, %s, %s\n", "First_name", "last_name", "email", "phone_number", "date_of_birth", "id_number");
+
+        if (file == NULL){
             perror("Unable to create or open file ");
             return 1;
         }
@@ -95,11 +97,24 @@ void create_new_account(){
     printf("\n\t3. Enter your phone number: ");
     scanf("%lf", &add.phone_number);
     printf("\n\t4. Enter your date of birth (mm/dd/yyyy): ");
-    scanf("%s", add.last_name);
+    scanf("%s", add.dob);
     printf("\n\t5. Enter your id number: ");
     scanf("%d", &add.id_number);
 
-    system("cls");
+    fprintf(
+            file,
+            "%s, %s, %s, %lf, %s, %d\n",
+            add.first_name,
+            add.last_name,
+            add.email,
+            add.phone_number,
+            add.dob,
+            add.id_number);
+
+    fclose(file);
+    printf("\nAccount created successfully!!!");
+
+    //system("cls");
 }
 
 int main(){
