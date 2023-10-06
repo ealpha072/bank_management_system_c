@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <windows.h>
 #include <stdlib.h>
+#include "helper_functions.h"
 
 int main_exit;
 struct bank_user{
@@ -66,21 +67,27 @@ void login(){
 
 void create_new_account(){
     const char *filename = "user_db.csv";
-    FILE *file = fopen(filename, "a+");
-    fprintf(file, "%s, %s, %s, %s, %s, %s\n", "First_name", "last_name", "email", "phone_number", "date_of_birth", "id_number");
+    FILE *file;
 
-    if(file == NULL){
-        //file doesnt exist so create and open in append
+    if(access(filename, F_OK) != -1){
+            //file exists, open in append extended
         file = fopen(filename, "a+");
-        fprintf(file, "%s, %s, %s, %s, %s, %s\n", "First_name", "last_name", "email", "phone_number", "date_of_birth", "id_number");
 
-        if (file == NULL){
-            perror("Unable to create or open file ");
-            return 1;
+        if(file == NULL){
+            perror("Unable to open file");
         }
-        printf("File sucesfully created and opened in append extended mode");
     }else{
-        printf("File exists and has been opened in append mode");
+        //file doesn't exist
+        file = fopen(filename, "a+");
+
+        if(file == NULL){
+            perror("Unable to open file");
+        }
+
+        fprintf(
+                file,
+                "%s, %s, %s, %s, %s, %s\n",
+                "First_name", "last_name", "email", "phone_number", "date_of_birth", "id_number");
     }
 
     //char sign_up_errors[];
@@ -104,12 +111,7 @@ void create_new_account(){
     fprintf(
             file,
             "%s, %s, %s, %lf, %s, %d\n",
-            add.first_name,
-            add.last_name,
-            add.email,
-            add.phone_number,
-            add.dob,
-            add.id_number);
+            add.first_name,add.last_name,add.email,add.phone_number,add.dob,add.id_number);
 
     fclose(file);
     printf("\nAccount created successfully!!!");
