@@ -15,6 +15,9 @@ int main(int argc, char *argv[]){
         if(strcmp(input, "exit\n") == 0){
             printf("Exiting alphadb>>");
             break;
+        }else{
+            printf("Unrecognized command \n");
         }
     }
+    return 0;
 }
