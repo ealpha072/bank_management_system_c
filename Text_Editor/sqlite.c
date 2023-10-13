@@ -1,4 +1,5 @@
 //start with REPL (READ-EVAL-PRINT-LOOP)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +7,7 @@
 
 void print_prompt(){printf("alphadb>> ");}
 
-int main(int argc, char *argv[]){
+int main(){
     while (1){
         char input[256];
         print_prompt();
