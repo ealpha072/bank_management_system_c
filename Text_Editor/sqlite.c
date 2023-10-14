@@ -13,11 +13,13 @@ int main(){
         print_prompt();
 
         fgets(input, sizeof(input), stdin);
+
         if(strcmp(input, "exit\n") == 0){
-            printf("Exiting alphadb>>");
+            printf("Exiting alphadb>> \n");
             break;
         }else{
-            printf("Unrecognized command \n");
+			input[strcspn(input, "\n")] = 0;
+			printf("Unrecognized command '%s'.\n", input);
         }
     }
     return 0;
