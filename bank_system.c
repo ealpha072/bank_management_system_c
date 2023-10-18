@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <mysql.h>
 #include <unistd.h>
-#include <windows.h>
+//#include <windows.h>
 #include <stdlib.h>
 #include "helper_functions.h"
+#include "fxn_prototype.h"
 
 int main_exit;
 struct bank_user{
@@ -12,13 +12,13 @@ struct bank_user{
     char last_name[100];
     double phone_number;
     char dob[12];
-    char id_number[10];
+    int id_number;
 }add;
 
 void menu(void){
     int user_choice;
-    system("cls");
-    system("color 9");
+   // system("cls");
+   // system("color 9");
     printf("\n\n\t\tCUSTOMER ACCOUNT BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the main menu \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
     printf("\n\t1.Create new account");
@@ -29,7 +29,7 @@ void menu(void){
 
     scanf("%d", &user_choice);
     //printf("\n\tUser chosen option: %d\n", user_choice);
-    system("cls");
+    //system("cls");
 
     switch(user_choice){
         case 1:
@@ -45,22 +45,22 @@ void menu(void){
 }
 
 void close_app(){
-    system("cls");
+    //system("cls");
     printf("\n\n\t\tThank you for choosing our bank!!! \n\n");
 }
 
 void login(){
     char username[20];
     char password[100];
-    system("cls");
+    //system("cls");
     printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
     printf("\n\tEnter your username: ");
-    scanf("%s", &username);
+    scanf("%s", username);
     printf("\n\tYour username is: %s\n", username);
 
     printf("\n\tEnter your password: ");
-    scanf("%s", &password);
+    scanf("%s", password);
     printf("\n\tYour password is: %s\n", username);
     //printf("\n\tEnter your password: ");
     //system("cls");
@@ -92,7 +92,7 @@ void create_new_account(){
     }
 
     //char sign_up_errors[];
-    system("cls");
+    //system("cls");
     printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the new user page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
@@ -115,12 +115,13 @@ void create_new_account(){
             add.first_name,add.last_name,add.email,add.phone_number,add.dob,add.id_number);
 
     fclose(file);
-    printf("\nAccount created successfully!!!");
+    printf("\nAccount created successfully!!!\n");
 
     //system("cls");
 }
 
 int main(){
+    
     menu();
     return 0;
 }
