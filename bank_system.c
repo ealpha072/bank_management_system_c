@@ -17,7 +17,7 @@ struct bank_user{
 
 void menu(void){
     int user_choice;
-   // system("cls");
+    system("clear");
    // system("color 9");
     printf("\n\n\t\tCUSTOMER ACCOUNT BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the main menu \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
@@ -46,13 +46,15 @@ void menu(void){
 
 void close_app(){
     //system("cls");
-    printf("\n\n\t\tThank you for choosing our bank!!! \n\n");
+    printf("\n\n\t\tThank you for choosing our bank!!! EXiting application \n\n");
+    sleep(3);
+    system("clear");
 }
 
 void login(){
     char username[20];
     char password[100];
-    //system("cls");
+    system("clear");
     printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the login page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
     printf("\n\tEnter your username: ");
@@ -92,7 +94,7 @@ void create_new_account(){
     }
 
     //char sign_up_errors[];
-    //system("cls");
+    system("clear");
     printf("\n\n\t\tALPHA BANK MANAGEMENT SYSTEM");
     printf("\n\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome to the new user page \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n");
 
@@ -116,12 +118,17 @@ void create_new_account(){
 
     fclose(file);
     printf("\nAccount created successfully!!!\n");
+    printf("Taking you to main menu in a few!!");
+    sleep(2);
+
+    system("clear");
+    menu();
 
     //system("cls");
 }
 
 int main(){
-    
+    //system("konsole -e ./bank_system");
     menu();
     return 0;
 }
